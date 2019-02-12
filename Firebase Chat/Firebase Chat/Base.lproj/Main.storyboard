@@ -18,16 +18,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="tVH-kL-h5w">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a new thread:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ak-rg-nGq">
+                                    <rect key="frame" x="8" y="8" width="359" height="28"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="createThread:" destination="MUy-cv-i3U" eventType="editingDidEnd" id="FQS-e2-sKv"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="3Ak-rg-nGq" secondAttribute="bottom" constant="8" id="2Qi-Um-7Co"/>
+                                <constraint firstAttribute="trailing" secondItem="3Ak-rg-nGq" secondAttribute="trailing" constant="8" id="8v9-4a-0tt"/>
+                                <constraint firstItem="3Ak-rg-nGq" firstAttribute="top" secondItem="tVH-kL-h5w" secondAttribute="top" constant="8" id="lIw-fp-xZq"/>
+                                <constraint firstItem="3Ak-rg-nGq" firstAttribute="leading" secondItem="tVH-kL-h5w" secondAttribute="leading" constant="8" id="qGG-ln-h1n"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KXH-RO-dOl">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageThreadCell" textLabel="NIm-CY-dgZ" rowHeight="63" style="IBUITableViewCellStyleDefault" id="KXH-RO-dOl">
+                                <rect key="frame" x="0.0" y="72" width="375" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KXH-RO-dOl" id="h6n-xB-69N">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NIm-CY-dgZ">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="62.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="X0o-nc-lzj" kind="show" id="zGw-4U-hu1"/>
+                                    <segue destination="X0o-nc-lzj" kind="show" identifier="ViewMessageThread" id="zGw-4U-hu1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -37,6 +68,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mhM-gu-8si"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="WrM-Ny-r6S">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="beginRefresh:" destination="MUy-cv-i3U" eventType="valueChanged" id="1yM-jA-Kg2"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <outlet property="threadTitleTextField" destination="3Ak-rg-nGq" id="xgT-4N-JYS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gde-8T-SFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -55,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyw-FP-mA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="-351"/>
+            <point key="canvasLocation" x="1874" y="-351"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hYs-ZY-6Ci">
@@ -73,7 +113,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKX-nj-Tju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168.80000000000001" y="-351.27436281859076"/>
+            <point key="canvasLocation" x="351" y="-351"/>
         </scene>
     </scenes>
 </document>
